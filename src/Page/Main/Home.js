@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import BlogCart from '../../Component/BlogCart';
 
 const Home = () => {
+    const[blogs,setBlogs]=useState([])
+    useEffect(()=>{
+        fetch('http://localhost:5000/api/v1/blog')
+        .then(res =>res.json())
+        .then(data => setBlogs(data.data))
+    },[])
     return (
         <div>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, neque tenetur! Minima mollitia eum excepturi sequi soluta nobis, harum distinctio! Error possimus ut atque quis, labore inventore iste rerum fugit.
+            {
+                blogs.map(blog => <BlogCart key={blog._id} blog={blog} />)
+            }
         </div>
     );
 };

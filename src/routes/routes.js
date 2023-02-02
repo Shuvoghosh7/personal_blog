@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import BlogDetails from "../Component/BlogDetails";
 import Dashboard from "../layout/Dashboard/Dashboard";
 import Main from "../layout/Main/Main";
 import AddBlog from "../Page/Dashboard/AddBlog";
@@ -25,8 +26,13 @@ const routes = createBrowserRouter([
           path: "contact",
           element: <Contact />,
         },      
+        {
+          path: "blog/:id",
+          element: <BlogDetails />,
+        },      
       ],
     },
+    
     {
         path: "/dashboard",
         element: <Dashboard />,
