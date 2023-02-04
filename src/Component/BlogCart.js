@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import './BlogCart.css'
+
 const BlogCart = ({ blog }) => {
-    console.log(blog)
+    const dispatch=useDispatch()
     const { imageUrl, blogTitle, blogCategory, blogDescription, blogDate, _id } = blog
     return (
         <div className='mt-12 lg:mx-40 mx-12'>
@@ -20,6 +22,7 @@ const BlogCart = ({ blog }) => {
                     <Link to={`/blog/${_id}`} className='continu-btn'>Continue Reading</Link>
                 </div>
             </div>
+          
 
         </div>
     );

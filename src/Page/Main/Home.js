@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import BlogCart from '../../Component/BlogCart';
+import { useDispatch, useSelector } from "react-redux";
+import loadProductData from '../../redux/Thunk/Blogs/fetchProduct';
 
 const Home = () => {
-    const[blogs,setBlogs]=useState([])
+   
+    const dispatch = useDispatch();
+    const blogs=useSelector((state)=>state.Blogs)
     useEffect(()=>{
-        fetch('http://localhost:5000/api/v1/blog')
-        .then(res =>res.json())
-        .then(data => setBlogs(data.data))
+        dispatch(loadProductData())   
     },[])
+    let content;
+    if(blogs.length){
+        content=blogs.map(blog => <BlogCart key={blog._id} blog={blog} />)
+
+    }
     return (
         <div>
             {
-                blogs.map(blog => <BlogCart key={blog._id} blog={blog} />)
+               content 
             }
         </div>
     );
