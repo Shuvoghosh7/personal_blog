@@ -5,7 +5,6 @@ export const loadBlogData=(data)=>{
       type:LOAD_BLOG,
       payload:data,
     }
-  
   }
 
   export const addBlog = (blog) => {
