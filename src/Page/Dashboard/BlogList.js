@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { AiTwotoneDelete } from 'react-icons/ai';
+import { useDispatch, useSelector } from "react-redux";
+import deleteBlogData from '../../redux/Thunk/Blogs/deleteBlog';
 
+import loadProductData from '../../redux/Thunk/Blogs/fetchProduct';
 const BlogList = () => {
-    const [blogs, setBlogs] = useState([])
+    const dispatch=useDispatch();
+    // const [blogs, setBlogs] = useState([])
+    const blogs=useSelector((state)=>state.Blogs)
     useEffect(() => {
-        fetch('http://localhost:5000/api/v1/blog')
+     /*    fetch('http://localhost:5000/api/v1/blog')
             .then(res => res.json())
-            .then(data => setBlogs(data.data))
+            .then(data => setBlogs(data.data)) */
+            dispatch(loadProductData())   
     }, [])
     return (
         <div class="overflow-x-auto">
             <table class="table table-zebra w-full">
                 <thead>
                     <tr>
-                        <th></th>
+                
                         <th>Blog Title</th>
                         <th>Blog Category</th>
                         <th>Blog  Date</th>
@@ -22,15 +28,16 @@ const BlogList = () => {
                 </thead>
                 <tbody>
                     {
-                        blogs?.map((blog, index) =>
+                        blogs?.map(({blogTitle,blogCategory,blogDate,_id}) =>
                             <tr>
-                                <th>{index + 1}</th>
-                                <td>{blog.blogTitle}</td>
-                                <td>{blog.blogCategory}</td>
-                                <td>{blog.blogDate}</td>
+                                
+                                <td>{blogTitle}</td>
+                                <td>{blogCategory}</td>
+                                <td>{blogDate}</td>
                                 <td>
                                     <div>
-                                        <button className='text-xl text-red-600' ><AiTwotoneDelete /></button>
+                                        <button 
+                                        className='text-xl text-red-600'  ><AiTwotoneDelete /></button>
                                     </div>
                                 </td>
 

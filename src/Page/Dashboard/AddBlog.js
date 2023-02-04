@@ -4,19 +4,22 @@ import { useDispatch } from "react-redux";
 import addBlogData from '../../redux/Thunk/Blogs/addBlog';
 
 const AddBlog = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset} = useForm();
     const dispatch=useDispatch();
     const submit = (data) => {
         const blog = {
             imageUrl: data.imageUrl,
             blogTitle: data.blogTitle,
             blogCategory:data.blogCategory,
-            blogDescription:data.blogCategory,
+            blogDescription:data.blogDescription,
             blogDate:data.blogDate,
+          
         };
     
         console.log(blog);
         dispatch(addBlogData(blog))
+        reset()
+
       };
     return (
         <div>
@@ -59,12 +62,12 @@ const AddBlog = () => {
                             </label>
                             <input
                                 type="text"
-                                placeholder="blog Title"
+                                placeholder="Blog Category"
                                 className="input input-bordered bg-white w-full"
                                 {...register("blogCategory", {
                                     required: {
                                         value: true,
-                                        message: "blogTitle is required"
+                                        message: "blog Category is required"
                                     }
                                 })}
                             />
@@ -73,21 +76,28 @@ const AddBlog = () => {
                             <label className="label">
                                 <span className="label-text">Blog Description</span>
                             </label>
-                            <textarea
-                                placeholder="Project Description"
+                            <input
+                                type="text"
+                                placeholder="Blog Description"
                                 className="input input-bordered bg-white w-full"
-                                {...register("blogDescription")}
+                                {...register("blogDescription", {
+                                    required: {
+                                        value: true,
+                                        message: "blog Category is required"
+                                    }
+                                })}
                             />
                         </div>
+                        
                         <div className="form-control w-full mx-auto">
                             <label className="label">
-                                <span className="label-text">Blog Category</span>
+                                <span className="label-text">Blog Date</span>
                             </label>
                             <input
                                 type="date"
                                 placeholder="blog Title"
                                 className="input input-bordered bg-white w-full"
-                                {...register("blogCategory", {
+                                {...register("blogDate", {
                                     required: {
                                         value: true,
                                         message: "blogTitle is required"

@@ -12,12 +12,12 @@ const addBlogData=(blog)=>{
         });
         const data =await res.json();
 
-        if(data.acknowledged){
+       
             dispatch(addBlog({
                 _id:data.insertedId,
                 ...blog,
             }))
-        }
+        
 
 
     }

@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 
 const BlogDetails = () => {
     const { id } = useParams();
-    const [blogDetails, seBlogDetails] = useState([])
-    console.log(blogDetails)
+   const [blogDetails, seBlogDetails] = useState([])
     useEffect(() => {
         fetch(`http://localhost:5000/api/v1/blog/${id}`)
         .then(res => res.json())
         .then(data => seBlogDetails(data.data))
+     
     }, [])
     return (
         <div className='mt-12 lg:mx-40 mx-12'>
